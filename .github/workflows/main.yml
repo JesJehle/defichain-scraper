@@ -5,11 +5,10 @@ name: DefiChain Dashboard
 # Controls when the workflow will run
 on:
   schedule:
-  - cron: "*/6 * * * *"
+    - cron: "*/6 * * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   # workflow_dispatch:
-  
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -20,9 +19,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "Europe/Berlin"
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
@@ -45,6 +47,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
-      
-      
-
