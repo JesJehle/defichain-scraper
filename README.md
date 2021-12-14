@@ -7,3 +7,5 @@ For this to work, we need vary low volatile assets:
 * dGLD - gold
 * dSLV - silva
 * dURTH - msci world etf
+
+The app is live under: https://share.streamlit.io/jesjehle/defichain-stockstoken-board/app.py
