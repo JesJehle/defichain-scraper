@@ -34,4 +34,11 @@ for token in tokens:
         go.Scatter(x=moving_avg['time'], y=moving_avg['dex_diff'],
                    name="moving average",  line=dict(color='white', width=2))
     )
+    fig.update_layout(legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="right",
+        x=1
+    ))
     st.plotly_chart(fig, use_container_width=True)
