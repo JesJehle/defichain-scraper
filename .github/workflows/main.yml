@@ -5,7 +5,7 @@ name: DefiChain Dashboard
 # Controls when the workflow will run
 on:
   schedule:
-  - cron: "*/5 * * * *"
+  - cron: "*/6 * * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -34,12 +34,17 @@ jobs:
       - name: Run scraper
         run: |
           python get_prices.py
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Commit files # commit the output folder
+        run: |
+          git config --local user.email "jesjehle@gmx.de"
+          git config --local user.name "JesJehle"
+          git add ./prices.csv
+          git commit -m "update"
+      - name: Push changes # push the output folder to your repo
+        uses: ad-m/github-push-action@master
         with:
-          commit_message: "[Bot] Update all the things!"
-          commit_user_name: JesJehle
-          commit_user_email: jesjehle@gmx.de
-          commit_author: JesJehle <jesjehle@gmx.de>
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
       
       
 
